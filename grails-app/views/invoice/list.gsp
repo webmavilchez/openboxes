@@ -30,8 +30,11 @@
                     <thead>
                     <tr>
                         <th>${warehouse.message(code: 'default.actions.label')}</th>
+                        <th>${warehouse.message(code: 'default.status.label')}</th>
+                        <th>${warehouse.message(code: 'default.type.label')}</th>
                         <th>${warehouse.message(code: 'default.numItems.label')}</th>
                         <th>${warehouse.message(code: 'invoice.invoiceNumber.label')}</th>
+                        <th>${warehouse.message(code: 'invoice.vendor.label')}</th>
                         <th>${warehouse.message(code: 'invoice.vendorInvoiceNumber.label')}</th>
                         <th>${warehouse.message(code: 'invoice.totalValue.label')}</th>
                         <th>${warehouse.message(code: 'invoice.currency.label')}</th>
@@ -54,6 +57,14 @@
                                     <g:render template="/invoice/actions" model="[invoiceInstance:invoiceInstance]"/>
                                 </div>
                             </td>
+                            <td class="middle" width="1%">
+                                <div class="tag">
+                                    <format:metadata obj="${invoiceInstance?.status}"/>
+                                </div>
+                            </td>
+                            <td class="middle" width="1%">
+                                <div>${invoiceInstance?.invoiceType}</div>
+                            </td>
                             <td>
                                 <div class="count">${invoiceInstance?.itemCount}</div>
                             </td>
@@ -61,6 +72,9 @@
                                 <g:link action="show" id="${invoiceInstance.id}">
                                     ${invoiceInstance?.invoiceNumber}
                                 </g:link>
+                            </td>
+                            <td class="middle">
+                                <div>${invoiceInstance?.vendor}</div>
                             </td>
                             <td class="middle">
                                 <div>${invoiceInstance?.vendorInvoiceNumber}</div>
