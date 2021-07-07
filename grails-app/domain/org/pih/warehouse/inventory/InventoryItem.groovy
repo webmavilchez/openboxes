@@ -53,7 +53,7 @@ class InventoryItem implements Serializable {
     Date dateCreated
     Date lastUpdated
 
-    static transients = ['quantity', 'quantityOnHand', 'quantityAvailableToPromise', 'expirationStatus', 'associatedProducts']
+    static transients = ['quantity', 'quantityOnHand', 'quantityAvailableToPromise', 'expirationStatus', 'associatedProducts', 'isAutopickable']
 
     static belongsTo = [product: Product]
 
@@ -132,4 +132,7 @@ class InventoryItem implements Serializable {
         return [product?.id]
     }
 
+    def getIsAutopickable() {
+        return lotStatus != LotStatusCode.RECALLED
+    }
 }

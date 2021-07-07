@@ -1022,16 +1022,17 @@ class StockMovementService {
     List getSuggestedItems(List<AvailableItem> availableItems, Integer quantityRequested) {
 
         List suggestedItems = []
+        List<AvailableItem> autopickableItems = availableItems?.findAll { it.isAutopickable }
 
         // As long as quantity requested is less than the total available we can iterate through available items
         // and pick until quantity requested is 0. Otherwise, we don't suggest anything because the user must
         // choose anyway. This might be improved in the future.
-        Integer quantityAvailable = availableItems ? availableItems?.sum {
+        Integer quantityAvailable = autopickableItems ? autopickableItems?.sum {
             it.quantityAvailable
         } : 0
         if (quantityRequested <= quantityAvailable) {
 
-            for (AvailableItem availableItem : availableItems) {
+            for (AvailableItem availableItem : autopickableItems) {
                 if (quantityRequested == 0)
                     break
 

@@ -301,6 +301,10 @@ class AvailableItem {
         quantityAvailable(nullable: true)
     }
 
+    def getIsAutopickable() {
+        return inventoryItem?.isAutopickable
+    }
+
     Map toJson() {
         return [
                 "inventoryItem.id": inventoryItem?.id,
