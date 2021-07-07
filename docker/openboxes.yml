@@ -1,0 +1,6 @@
+dataSource.dbCreate: none
+dataSource.url: jdbc:mysql://${DB_HOST:host.docker.internal}:${DB_PORT:3306}/${DB_NAME:openboxes}?useSSL=false
+dataSource.username: ${DB_USERNAME:openboxes}
+dataSource.password: ${DB_PASSWORD:password}
+openboxes.jobs.calculateQuantityJob.cronExpression: ${CRON_CALCULATE_JOB:"0 0 0 * * ?"}
+openboxes.anonymize.enabled: ${ANONYMIZE_ENABLED:false}
